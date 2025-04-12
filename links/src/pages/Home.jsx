@@ -1,26 +1,23 @@
-import { Link } from "react-router-dom";
-
+// import pages
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import NavBar from "../components/navbar/NavBar";
 import classes from "./page.module.css";
 
-export default function Home() {
+// import components
+import ContactList from "../components/contactsList/contactList";
+import AddForm from "../components/modal/formToadd/addForm";
+
+// import all data from DB that have link to home page
+import { contactsDataFromDB } from "../data/contactsData";
+
+export default function Home(props) {
   return (
     <div className={classes.page}>
       <Header />
-      <NavBar />
+      <NavBar links={props.links} />
       <h2>Home</h2>
-      <main>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis,
-          impedit.
-        </p>
-        {/* Link replaces a tag <a href="/about">About</a> and has to be styled by a */}
-        <p>Go to 
-          <Link to="/about">About</Link>
-        </p>
-      </main>
+      <main></main>
       <Footer />
     </div>
   );

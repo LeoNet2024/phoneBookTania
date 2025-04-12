@@ -1,14 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from '../pages/Home';
-import About from '../pages/About';
-import NotFound from '../pages/NotFound';
+import Home from "../pages/Home";
+import About from "../pages/About";
+import NotFound from "../pages/NotFound";
 
-import classes from '../app/app.module.css';
-import Groups from './Group';
-import Logout from './Logout';
+import classes from "../app/app.module.css";
+import Groups from "./Groups";
+import Logout from "./Logout";
+import Contacts from "./Contacts";
+import Login from "./Login";
 
-export default function PageRouter() {
+export default function PageRouter(props) {
   return (
     <section className={classes.app}>
       <Router>
@@ -18,15 +20,18 @@ export default function PageRouter() {
           {/* you can add props to component as usual */}
 
           {/* Two separate routes for Home component */}
-          <Route path='/' element={<Home />} />
-          <Route path='/home' element={<Home />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home links={props.links} />} />
+          <Route path="/contacts" element={<Contacts links={props.links} />} />
 
-          <Route path='/about' element={<About />} />
-          <Route path='/group' element={<Groups />} />
-          <Route path='/logout' element={<Logout />} />
+          {/* <Route path="/about" element={<About links={props.links} />} /> */}
+          <Route path="/groups" element={<Groups links={props.links} />} />
+          {/* <Route path="/logout" element={<Logout />} /> */}
+
+          <Route path="/login" element={<Login />} />
 
           {/* if nothing was found, show NotFound */}
-          <Route path='*' element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </section>
