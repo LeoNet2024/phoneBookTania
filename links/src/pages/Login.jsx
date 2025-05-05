@@ -3,39 +3,47 @@ import classesLogIn from "./login.module.css";
 
 import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-
 import { users } from "../data/users";
 
-import { checkUserName, checkPassword } from "../functions/validation";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [showPass, setShowPass] = useState("password");
   const navigate = useNavigate();
-  let vertify;
+
+  // use state for all form details
   const [userDetails, setUserDetails] = useState({
     userName: "",
     password: "",
     conPassword: "",
   });
 
+  const [errMsg, setErrMsg] = useState();
+
   function handleSubmit(e) {
-    console.log("prevent");
     e.preventDefault();
     // cheking if the user Exists and also if the password the same
+
     if (userDetails.password !== userDetails.conPassword) {
-      alert("passwords must be the same");
+      setErrMsg("password not match");
       return;
     }
 
-    vertify = users.find(
+    let vertify = users.find(
       (el) =>
         el.userName === userDetails.userName &&
         el.password === userDetails.password
     );
 
-    if (vertify) navigate("/home");
-    else alert("password or user name is invalid");
+    if (vertify) {
+      // save the user into local storge
+      localStorage.setItem("loggedInUser", userDetails.userName);
+      navigate("/home");
+    } else {
+      setErrMsg("password or user name is invalid");
+      return;
+    }
+    return;
   }
 
   function handleChange(e) {
@@ -43,6 +51,8 @@ export default function Login() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
+
+    setErrMsg("");
   }
 
   return (
@@ -57,9 +67,10 @@ export default function Login() {
                 type="text"
                 name="userName"
                 minLength={6}
-                pattern="[A-za-z1-9]{6,12}"
+                pattern="[A-za-z1-9]{6,8}"
                 required
                 onChange={(e) => handleChange(e)}
+                value={userDetails.userName}
               />
             </div>
             <div>
@@ -68,7 +79,7 @@ export default function Login() {
                 type={showPass}
                 required
                 name="password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]({6,10}))"
                 onChange={(e) => handleChange(e)}
               />
               <FaEyeSlash
@@ -86,6 +97,7 @@ export default function Login() {
                 name="conPassword"
                 onChange={(e) => handleChange(e)}
               />
+              {errMsg && <p style={{ color: "red" }}>{errMsg}</p>}
             </div>
 
             <div>

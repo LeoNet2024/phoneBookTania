@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <div>
-      <PageRouter links={links} />
+      <PageRouter links={links}  />
       <IoAddCircleSharp
         onClick={handleClick}
         style={{ fontSize: "8rem", color: "green" }}

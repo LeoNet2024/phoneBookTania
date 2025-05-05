@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -9,8 +14,10 @@ import Groups from "./Groups";
 import Logout from "./Logout";
 import Contacts from "./Contacts";
 import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 export default function PageRouter(props) {
+  
   return (
     <section className={classes.app}>
       <Router>
