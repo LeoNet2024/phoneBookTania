@@ -7,7 +7,7 @@ import { users } from "../data/users";
 
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
   const [showPass, setShowPass] = useState("password");
   const navigate = useNavigate();
 
@@ -38,6 +38,8 @@ export default function Login() {
     if (vertify) {
       // save the user into local storge
       localStorage.setItem("loggedInUser", userDetails.userName);
+      props.onLogIn(() => true);
+
       navigate("/home");
     } else {
       setErrMsg("password or user name is invalid");

@@ -6,18 +6,20 @@ import {
 } from "react-router-dom";
 
 import Home from "../pages/Home";
-import About from "../pages/About";
 import NotFound from "../pages/NotFound";
+import { useState } from "react";
 
 import classes from "../app/app.module.css";
 import Groups from "./Groups";
-import Logout from "./Logout";
 import Contacts from "./Contacts";
 import Login from "./Login";
-import { useNavigate } from "react-router-dom";
+
+// import user from React  ("DB")
+import { contactsDataFromDB } from "../data/contactsData";
 
 export default function PageRouter(props) {
-  
+  const [isLoggedIn, setLoggedIn] = useState(true);
+
   return (
     <section className={classes.app}>
       <Router>
@@ -27,15 +29,36 @@ export default function PageRouter(props) {
           {/* you can add props to component as usual */}
 
           {/* Two separate routes for Home component */}
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home links={props.links} />} />
-          <Route path="/contacts" element={<Contacts links={props.links} />} />
+          <Route path="/" element={<Login onLogIn={setLoggedIn} />} />
+          <Route
+            path="/home"
+            element={
+              isLoggedIn ? <Home links={props.links} /> : <Navigate to={"/"} />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              isLoggedIn ? (
+                <Contacts links={props.links} contacts={contactsDataFromDB} />
+              ) : (
+                <Navigate to={"/"} />
+              )
+            }
+          />
 
           {/* <Route path="/about" element={<About links={props.links} />} /> */}
-          <Route path="/groups" element={<Groups links={props.links} />} />
+          <Route
+            path="/groups"
+            element={
+              isLoggedIn ? (
+                <Groups links={props.links} contacts={contactsDataFromDB} />
+              ) : (
+                <Navigate to={"/"} />
+              )
+            }
+          />
           {/* <Route path="/logout" element={<Logout />} /> */}
-
-          <Route path="/login" element={<Login />} />
 
           {/* if nothing was found, show NotFound */}
           <Route path="*" element={<NotFound />} />

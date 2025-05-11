@@ -4,6 +4,7 @@ import NavBar from "../components/navbar/NavBar";
 import classes from "./page.module.css";
 
 export default function Groups(props) {
+  console.log(props.contacts);
   return (
     <div className={classes.page}>
       <Header />

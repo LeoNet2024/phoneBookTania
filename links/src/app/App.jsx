@@ -11,21 +11,9 @@ import Login from "../pages/Login";
 import { links } from "../data/links";
 
 export default function App() {
-  // use state:
-  const [showForm, setShowForm] = useState(false);
-
-  function handleClick() {
-    setShowForm((prev) => !prev);
-  }
-
   return (
     <div>
-      <PageRouter links={links}  />
-      <IoAddCircleSharp
-        onClick={handleClick}
-        style={{ fontSize: "8rem", color: "green" }}
-      />
-      {showForm && <AddForm func={handleClick} />}
+      <PageRouter links={links} />
     </div>
   );
 }

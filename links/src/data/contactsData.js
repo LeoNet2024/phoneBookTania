@@ -1,32 +1,51 @@
 export const contactsDataFromDB = [
   {
+    id: 1,
     name: "Alice Johnson",
     email: "alice.johnson@example.com",
     phone: "+1-555-123-4567",
+    group: "Work",
   },
   {
+    id: 2,
     name: "Ben Carter",
     email: "ben.carter@example.com",
     phone: "+1-555-234-5678",
+    group: "Work",
   },
   {
+    id: 3,
     name: "Chloe Nguyen",
     email: "chloe.nguyen@example.com",
     phone: "+1-555-345-6789",
+    group: "Family",
   },
   {
+    id: 4,
     name: "David Smith",
     email: "david.smith@example.com",
     phone: "+1-555-456-7890",
+    group: "School",
   },
   {
+    id: 5,
     name: "Emma Brown",
     email: "emma.brown@example.com",
     phone: "+1-555-567-8901",
+    group: "School",
   },
   {
+    id: 6,
     name: "Faisal Rahman",
     email: "faisal.rahman@example.com",
     phone: "+1-555-678-9012",
+    group: "School",
+  },
+  {
+    id: 7,
+    name: "Daniel agami",
+    email: "faisal.rahman@example.com",
+    phone: "+972 8884-678-9012",
+    group: "School",
   },
 ];
