@@ -5,7 +5,7 @@ import classes from "./page.module.css";
 
 import PersonList from "../components/contactsList/PersonList";
 import SearchBar from "../components/searchBar/searchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Group from "../components/group/group";
 import EditForm from "../components/modal/formToEdit/editForm";
@@ -13,6 +13,11 @@ export default function Contacts(props) {
   // used to search bar.
 
   const [filteredContacts, setFilteredContacts] = useState(props.contacts);
+
+  // used to prevent double action
+  useEffect(() => {
+    setFilteredContacts(props.contacts);
+  }, [props.contacts]);
 
   // this function remove the person. the props way is -> contacts -> personList -> person
   function removeContact(personId) {

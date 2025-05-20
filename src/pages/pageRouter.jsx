@@ -58,7 +58,7 @@ export default function PageRouter(props) {
             path="/groups"
             element={
               isLoggedIn ? (
-                <Groups links={props.links} contacts={contactsDataFromDB} />
+                <Groups links={props.links} contacts={contacts} />
               ) : (
                 <Navigate to={"/"} />
               )

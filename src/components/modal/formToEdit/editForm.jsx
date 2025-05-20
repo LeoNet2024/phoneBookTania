@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import classes from "./editForm.module.css";
 
 export default function EditForm(props) {
@@ -18,13 +19,14 @@ export default function EditForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // sending to function the parametrs
     props.editContact(props.contact.id, formData);
   };
 
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <label>
-        Full Name:
+        Full name:
         <input name="name" value={formData.name} onChange={handleChange} />
       </label>
 
