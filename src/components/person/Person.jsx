@@ -7,6 +7,8 @@ export default function Person(props) {
   return (
     <div className={classes.person}>
       <h2> {props.name}</h2>
+      <img src={props.src} alt="avatar" />
+
       <p> {props.email}</p>
       <p>{props.phone}</p>
       <div className={classes.actions}>

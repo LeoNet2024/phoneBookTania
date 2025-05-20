@@ -1,3 +1,5 @@
+import getRandomAvatar from "../functions/randomAvatar";
+
 export const contactsDataFromDB = [
   {
     id: 1,
@@ -5,6 +7,7 @@ export const contactsDataFromDB = [
     email: "alice.johnson@example.com",
     phone: "+1-555-123-4567",
     group: "Work",
+    src: getRandomAvatar(),
   },
   {
     id: 2,
@@ -12,6 +15,7 @@ export const contactsDataFromDB = [
     email: "ben.carter@example.com",
     phone: "+1-555-234-5678",
     group: "Work",
+    src: getRandomAvatar(),
   },
   {
     id: 3,
@@ -19,6 +23,7 @@ export const contactsDataFromDB = [
     email: "chloe.nguyen@example.com",
     phone: "+1-555-345-6789",
     group: "Family",
+    src: getRandomAvatar(),
   },
   {
     id: 4,
@@ -26,6 +31,7 @@ export const contactsDataFromDB = [
     email: "david.smith@example.com",
     phone: "+1-555-456-7890",
     group: "School",
+    src: getRandomAvatar(),
   },
   {
     id: 5,
@@ -33,6 +39,7 @@ export const contactsDataFromDB = [
     email: "emma.brown@example.com",
     phone: "+1-555-567-8901",
     group: "School",
+    src: getRandomAvatar(),
   },
   {
     id: 6,
@@ -40,6 +47,7 @@ export const contactsDataFromDB = [
     email: "faisal.rahman@example.com",
     phone: "+1-555-678-9012",
     group: "School",
+    src: getRandomAvatar(),
   },
   {
     id: 7,
@@ -47,5 +55,6 @@ export const contactsDataFromDB = [
     email: "faisal.rahman@example.com",
     phone: "+972 8884-678-9012",
     group: "School",
+    src: getRandomAvatar(),
   },
 ];

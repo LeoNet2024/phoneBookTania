@@ -5,6 +5,7 @@ import { useState } from "react";
 
 // this component return list of contacts that given from DB
 export default function PersonList(props) {
+  console.log(props);
   // this action create list of persons
   const persons = props.contacts.map((el) => {
     return (
@@ -12,6 +13,7 @@ export default function PersonList(props) {
         name={el.name}
         email={el.email}
         phone={el.phone}
+        src={el.src}
         key={crypto.randomUUID()}
         id={el.id}
         group={el.group}
