@@ -1,8 +1,26 @@
-# React + Vite
+# 📱 PhoneBookTania
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React-based contact manager app that allows users to:
 
-Currently, two official plugins are available:
+- 👥 Add new contacts with personalized avatars
+- ✏️ Edit contact details easily
+- 🗑️ Delete contacts
+- 🔍 Filter contacts with live search
+- 📊 View recent contacts and group summaries
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
+- React
+- Vite
+- CSS Modules
+- LocalStorage (for data persistence)
+
+## 🖼️ Features
+- Modal form to add new contacts
+- Avatar auto-selection from predefined pool
+- Group-based categorization (Family, Work, School)
+- Responsive and user-friendly UI
+
+## 🛠️ Setup
+```bash
+npm install
+npm run dev
