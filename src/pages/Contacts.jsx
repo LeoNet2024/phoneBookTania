@@ -9,24 +9,23 @@ import { useEffect, useState } from "react";
 
 import Group from "../components/group/group";
 import EditForm from "../components/modal/formToEdit/editForm";
+import AddForm from "../components/modal/formToadd/addForm";
 export default function Contacts(props) {
-  // used to search bar.
-
   const [filteredContacts, setFilteredContacts] = useState(props.contacts);
 
+  //use state for add contact form
+  const [showAddContact, setShowAddContact] = useState(false);
+
   // used to prevent double action
+  // after the function has been executed the use effect will update the filter list
   useEffect(() => {
     setFilteredContacts(props.contacts);
   }, [props.contacts]);
 
   // this function remove the person. the props way is -> contacts -> personList -> person
   function removeContact(personId) {
-    props.setContacts((prev) =>
-      prev.filter((prev) => {
-        return prev.id != personId;
-      })
-    );
-    setFilteredContacts(props.contacts);
+    const res = props.contacts.filter((el) => el.id !== personId);
+    props.setContacts(res);
   }
 
   // this fucction edit contacts
@@ -35,13 +34,19 @@ export default function Contacts(props) {
 
     if (!selectedContact) console.log("Contact not found");
     else {
-      props.setContacts((prev) =>
-        prev.map((el) => {
-          return el.id === contactId ? contactDetails : el;
-        })
+      // if the user id dosnt match, the map function return the orginal obj.
+      // but if the user id equal that mean we want to override the exists obj with the new
+      const updatedContacts = props.contacts.map((el) =>
+        el.id === contactId ? { ...el, ...contactDetails } : el
       );
+      // update the prime contacts
+      props.setContacts(updatedContacts);
     }
-    setFilteredContacts(props.contacts);
+  }
+
+  // this funciton adding new contact to contacts list from addContacts component
+  function addNewContact(contactObj) {
+    props.setContacts((prev) => [...prev, contactObj]);
   }
 
   return (
@@ -49,18 +54,26 @@ export default function Contacts(props) {
       <Header />
       <NavBar links={props.links} />
       <h2>contacts</h2>
+      <button
+        onClick={() => setShowAddContact(true)}
+        style={{ width: "30%", margin: "auto" }}
+      >
+        Add new Contact
+      </button>
       <main>
         <SearchBar
           setContacts={setFilteredContacts}
           contacts={props.contacts}
         />
-        <p>this is the contact page</p>
         <PersonList
           contacts={filteredContacts}
           func={removeContact}
           edit={editContact}
         />
       </main>
+      {showAddContact && (
+        <AddForm addfunc={addNewContact} setForm={setShowAddContact} />
+      )}
       <Footer />
     </div>
   );

@@ -4,30 +4,22 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(3px);
-  transition: all 0.3s ease-in-out;
 }
 
 .content {
-  width: 60%;
+  width: 90%;
   max-width: 500px;
   background-color: white;
   text-align: left;
-  padding: 2.5rem;
+  padding: 2rem;
   position: relative;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transform: scale(1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.content:hover {
-  transform: scale(1.01);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .close {
@@ -36,65 +28,43 @@
   position: absolute;
   top: 1rem;
   right: 1.5rem;
-  color: #666;
-  transition: color 0.2s ease, transform 0.2s ease;
-  width: 32px;
-  height: 32px;
+  color: #ff0000;
+  font-weight: bold;
+}
+
+form {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+  flex-direction: column;
 }
 
-.close:hover {
-  color: #ff3b3b;
-  transform: rotate(90deg);
-  background-color: rgba(255, 59, 59, 0.1);
-}
-
-.formGroup {
-  margin-bottom: 1.5rem;
-}
-
-.label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 500;
-}
-
-.input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
+p {
+  margin-bottom: 1.2rem;
   font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.input:focus {
-  outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+input,
+select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
-.button {
-  background-color: #4a90e2;
+button {
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  background-color: #1976d2;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: #357abd;
-  transform: translateY(-1px);
-}
-
-.button:active {
-  transform: translateY(0);
+button:hover {
+  background-color: #1259a5;
 }

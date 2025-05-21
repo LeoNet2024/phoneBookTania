@@ -35,7 +35,11 @@ export default function PageRouter(props) {
           <Route
             path="/home"
             element={
-              isLoggedIn ? <Home links={props.links} /> : <Navigate to={"/"} />
+              isLoggedIn ? (
+                <Home contacts={contacts} links={props.links} />
+              ) : (
+                <Navigate to={"/"} />
+              )
             }
           />
           <Route

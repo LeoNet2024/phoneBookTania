@@ -3,49 +3,30 @@ import Footer from "../components/footer/Footer";
 import NavBar from "../components/navbar/NavBar";
 import classes from "./page.module.css";
 
-import { useState, useEffect } from "react";
-import { contactsDataFromDB } from "../data/contactsData";
+import Actions from "../components/compForHome/actions";
+import RecentContact from "../components/compForHome/recentContact";
 
 export default function Home(props) {
-  const [summary, setSummary] = useState({ family: 0, work: 0, school: 0 });
-  const [recentContacts, setRecentContacts] = useState([]);
-
-  useEffect(() => {
-    const groupSummary = { family: 0, work: 0, school: 0 };
-
-    contactsDataFromDB.forEach((c) => {
-      if (groupSummary[c.group] !== undefined) {
-        groupSummary[c.group]++;
-      }
-    });
-
-    setSummary(groupSummary);
-    setRecentContacts(contactsDataFromDB.slice(-3)); // שלושת האחרונים
-  }, []);
+  // "cutting" the last three contacts
+  const recentContacts = props.contacts.slice(-3);
 
   return (
     <div className={classes.page}>
       <Header />
       <NavBar links={props.links} />
-      <h2>Home</h2>
-      <p>Welcome back !</p>
+      <h2>Home page</h2>
       <main>
+        <h3>
+          Welcome to Your Personal Contact Manager! This application helps you
+          efficiently manage your contacts by grouping them into categories like
+          Family, Work, and School.
+        </h3>
+        <Actions />
         <section>
-          <h3>Contact Summary</h3>
-          <ul>
-            <li>Family: {summary.family}</li>
-            <li>Work: {summary.work}</li>
-            <li>School: {summary.school}</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Recently Added Contacts</h3>
-          {recentContacts.map((c, i) => (
-            <p key={i}>
-              {c.name} - {c.group}
-            </p>
-          ))}
+          <div>
+            <h2>recent contacts that added </h2>
+            <RecentContact recent={recentContacts} />
+          </div>
         </section>
       </main>
 
