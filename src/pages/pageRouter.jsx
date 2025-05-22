@@ -5,21 +5,24 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Home from "../pages/Home";
-import NotFound from "../pages/NotFound";
 import { useState } from "react";
-
 import classes from "../app/app.module.css";
-import Groups from "./Groups";
-import Contacts from "./Contacts";
-import Login from "./Login";
+
+import Login from "./login/Login";
+import Home from "./home/Home";
+import Contacts from "./contacts/Contacts";
+import Groups from "./groups/Groups";
+import Logout from "./logout/Logout";
+import NotFound from "./NotFound";
 
 // import user from React  ("DB")
 import { contactsDataFromDB } from "../data/contactsData";
 
 export default function PageRouter(props) {
+  // used to protected navigate
   const [isLoggedIn, setLoggedIn] = useState(true);
 
+  // contacts list
   const [contacts, setContacts] = useState(contactsDataFromDB);
 
   return (
@@ -68,7 +71,18 @@ export default function PageRouter(props) {
               )
             }
           />
-          {/* <Route path="/logout" element={<Logout />} /> */}
+          {
+            <Route
+              path="/logout"
+              element={
+                isLoggedIn ? (
+                  <Logout func={setLoggedIn} />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
+            />
+          }
 
           {/* if nothing was found, show NotFound */}
           <Route path="*" element={<NotFound />} />

@@ -1,15 +1,18 @@
 import React from "react";
-import classes from "./actions.module.css";
 
+import classes from "./actions.module.css";
 export default function RecentContact(props) {
+  console.log(props);
   return (
     <div className={classes.actionsGrid}>
       {props.recent.map((item, index) => (
         <div className={classes.card} key={index}>
-          <img className={classes.avatar} src={item.src} alt={item.name} />
-          <h3 className={classes.name}>{item.name}</h3>
-          <p className={classes.email}>{item.email}</p>
-          <span className={classes.group}>{item.group}</span>
+          <div className={classes.text}>
+            <img src={item.src} alt="" />
+          </div>
+          <div className={classes.text}>{item.name}</div>
+          <div className={classes.text}>{item.email}</div>
+          <div className={classes.text}>{item.group}</div>
         </div>
       ))}
     </div>

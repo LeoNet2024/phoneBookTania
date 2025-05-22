@@ -5,9 +5,6 @@ import { IoAddCircleSharp } from "react-icons/io5";
 
 import PageRouter from "../pages/pageRouter";
 
-import AddForm from "../components/modal/formToadd/addForm";
-import Login from "../pages/Login";
-
 import { links } from "../data/links";
 
 export default function App() {

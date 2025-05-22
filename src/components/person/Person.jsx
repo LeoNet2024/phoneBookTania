@@ -2,7 +2,9 @@ import { useState } from "react";
 import classes from "./Person.module.css";
 import EditForm from "../modal/formToEdit/editForm";
 
+// person components used for each contact in phone book
 export default function Person(props) {
+  // state for edit form
   const [showEdit, setShowEdit] = useState(false);
   return (
     <div className={classes.person}>
