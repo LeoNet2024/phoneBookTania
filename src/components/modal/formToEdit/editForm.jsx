@@ -5,7 +5,8 @@ import classes from "./editForm.module.css";
 export default function EditForm(props) {
   console.log(props);
   const [formData, setFormData] = useState({
-    name: props.contact.name,
+    fname: props.contact.fname,
+    lname: props.contact.lname,
     phone: props.contact.phone,
     email: props.contact.email,
     group: props.contact.group,
@@ -26,8 +27,13 @@ export default function EditForm(props) {
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <label>
-        Full name:
-        <input name="name" value={formData.name} onChange={handleChange} />
+        First Name:
+        <input name="name" value={formData.fname} onChange={handleChange} />
+      </label>
+
+      <label>
+        Last name:
+        <input name="name" value={formData.lname} onChange={handleChange} />
       </label>
 
       <label>

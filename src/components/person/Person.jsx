@@ -8,7 +8,7 @@ export default function Person(props) {
   const [showEdit, setShowEdit] = useState(false);
   return (
     <div className={classes.person}>
-      <h2> {props.name}</h2>
+      <h2> {props.fname + " " + props.lname}</h2>
       <img src={props.src} alt="avatar" />
 
       <p> {props.email}</p>

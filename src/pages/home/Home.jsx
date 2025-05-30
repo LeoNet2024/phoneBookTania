@@ -5,16 +5,18 @@ import classes from "../page.module.css";
 
 import Actions from "../../components/compForHome/actions";
 import RecentContact from "../../components/compForHome/recentContact";
+import { useEffect, useState } from "react";
 
 export default function Home(props) {
   // "cutting" the last three contacts
+
+  console.log(props);
   const recentContacts = props.contacts.slice(-3);
 
   return (
     <div className={classes.page}>
       <Header />
       <NavBar links={props.links} />
-      <h2>Home page</h2>
       <main>
         <h3>
           Welcome to Your Personal Contact Manager! This application helps you

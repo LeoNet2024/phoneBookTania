@@ -15,7 +15,12 @@ export default function SearchBar(props) {
       // props.setContacts is a function
       props.setContacts((prev) =>
         prev.filter((prev) => {
-          if (prev.name.toLowerCase().startsWith(e.target.value.toLowerCase()))
+          if (
+            prev.firstname
+              .toLowerCase()
+              .startsWith(e.target.value.toLowerCase()) ||
+            prev.lastname.toLowerCase().startsWith(e.target.value.toLowerCase())
+          )
             return prev;
         })
       );

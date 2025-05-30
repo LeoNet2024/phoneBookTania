@@ -9,20 +9,16 @@ import { useEffect, useState } from "react";
 
 import AddForm from "../../components/modal/formToadd/addForm";
 export default function Contacts(props) {
+  
   const [filteredContacts, setFilteredContacts] = useState(props.contacts);
 
   //use state for add contact form
   const [showAddContact, setShowAddContact] = useState(false);
 
-  // used to prevent double action
-  // after the function has been executed the use effect will update the filter list
-  useEffect(() => {
-    setFilteredContacts(props.contacts);
-  }, [props.contacts]);
-
   // this function remove the person. the props way is -> contacts -> personList -> person
   function removeContact(personId) {
     const res = props.contacts.filter((el) => el.id !== personId);
+    setFilteredContacts(res);
     props.setContacts(res);
   }
 
@@ -44,6 +40,7 @@ export default function Contacts(props) {
 
   // this funciton adding new contact to contacts list from addContacts component
   function addNewContact(contactObj) {
+    console.log(contactObj);
     props.setContacts((prev) => [...prev, contactObj]);
   }
 

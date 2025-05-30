@@ -1,6 +1,6 @@
 export const links = [
-  { url: "/home", name: "home" },
-  { url: "/contacts", name: "contacts" },
-  { url: "/groups", name: "groups" },
-  { url: "/logout", name: "logout" },
+  { url: "/home", name: "Home" },
+  { url: "/contacts", name: "Contacts" },
+  { url: "/groups", name: "Groups" },
+  { url: "/logout", name: "Logout" },
 ];

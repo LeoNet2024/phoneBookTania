@@ -3,9 +3,10 @@ import {
   Routes,
   Route,
   Navigate,
+  data,
 } from "react-router-dom";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "../app/app.module.css";
 
 import Login from "./login/Login";
@@ -14,16 +15,39 @@ import Contacts from "./contacts/Contacts";
 import Groups from "./groups/Groups";
 import Logout from "./logout/Logout";
 import NotFound from "./NotFound";
+import getRandomAvatar from "../functions/randomAvatar";
+import getRandomGroup from "../functions/randomGruop";
 
-// import user from React  ("DB")
-import { contactsDataFromDB } from "../data/contactsData";
-
-export default function PageRouter(props) {
+export default function PageRouter({ links }) {
   // used to protected navigate
   const [isLoggedIn, setLoggedIn] = useState(true);
 
   // contacts list
-  const [contacts, setContacts] = useState(contactsDataFromDB);
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    if (!isLoggedIn)
+      return (
+        <div>
+          <p>no contacts</p>
+        </div>
+      );
+    fetch("https://fakerapi.it/api/v1/persons?_quantity=10")
+      .then((res) => res.json())
+      .then((data) => {
+        setContacts((prev) => [
+          ...prev,
+          ...data.data.map((item) => ({
+            ...item,
+            src: getRandomAvatar(),
+            group: getRandomGroup(),
+          })),
+        ]);
+      })
+      .catch((err) => {
+        console.log("Error:", err);
+      });
+  }, []);
 
   return (
     <section className={classes.app}>
@@ -39,7 +63,7 @@ export default function PageRouter(props) {
             path="/home"
             element={
               isLoggedIn ? (
-                <Home contacts={contacts} links={props.links} />
+                <Home contacts={contacts} links={links} />
               ) : (
                 <Navigate to={"/"} />
               )
@@ -50,7 +74,7 @@ export default function PageRouter(props) {
             element={
               isLoggedIn ? (
                 <Contacts
-                  links={props.links}
+                  links={links}
                   contacts={contacts}
                   setContacts={setContacts}
                 />
@@ -65,7 +89,7 @@ export default function PageRouter(props) {
             path="/groups"
             element={
               isLoggedIn ? (
-                <Groups links={props.links} contacts={contacts} />
+                <Groups links={links} contacts={contacts} />
               ) : (
                 <Navigate to={"/"} />
               )

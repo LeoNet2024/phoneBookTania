@@ -9,7 +9,8 @@ export default function PersonList(props) {
   const persons = props.contacts.map((el) => {
     return (
       <Person
-        name={el.name}
+        fname={el.firstname}
+        lname={el.lastname}
         email={el.email}
         phone={el.phone}
         src={el.src}

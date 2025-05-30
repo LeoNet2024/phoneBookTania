@@ -5,7 +5,8 @@ import { use } from "react";
 export default function AddForm({ addfunc, setForm }) {
   // person details
   const [formData, setFormData] = useState({
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     phone: "",
     group: "family",
@@ -26,7 +27,7 @@ export default function AddForm({ addfunc, setForm }) {
     e.preventDefault();
 
     // make sure all the fields are filled
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.firstname || !formData.email || !formData.phone) {
       setShowErr(true);
       return;
     }
@@ -52,13 +53,22 @@ export default function AddForm({ addfunc, setForm }) {
           X
         </span>
         <h2>Add contact</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <p>
-            Name:
+            first Name:
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="firstname"
+              value={formData.firstname}
+              onChange={handleChange}
+            />
+          </p>
+          <p>
+            Last Name:
+            <input
+              type="text"
+              name="lastname"
+              value={formData.lastname}
               onChange={handleChange}
             />
           </p>
