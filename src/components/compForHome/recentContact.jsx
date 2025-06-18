@@ -10,7 +10,7 @@ export default function RecentContact(props) {
       {props.recent.map((item) => (
         <div className={classes.card} key={item.id}>
           <div className={classes.text}>
-            <img src={getRandomAvatar()} alt="" />
+            <img src={item.src} alt="" />
           </div>
           <div className={classes.text}>
             {item.firstname + " " + item.lastname}

@@ -9,8 +9,8 @@ export default function PersonList(props) {
   const persons = props.contacts.map((el) => {
     return (
       <Person
-        fname={el.firstname}
-        lname={el.lastname}
+        firstname={el.firstname}
+        lastname={el.lastname}
         email={el.email}
         phone={el.phone}
         src={el.src}
@@ -19,6 +19,7 @@ export default function PersonList(props) {
         group={el.group}
         func={props.func}
         editContact={props.edit}
+        setFavoriteList={props.setFavoriteList}
       />
     );
   });

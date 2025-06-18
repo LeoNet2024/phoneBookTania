@@ -33,7 +33,6 @@ export default function SearchBar(props) {
         placeholder="search contact"
         onChange={(e) => handleChange(e)}
       />
-      <CiSearch />
     </div>
   );
 }

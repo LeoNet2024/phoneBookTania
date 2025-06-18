@@ -1,14 +1,36 @@
 import { useState } from "react";
 import classes from "./Person.module.css";
 import EditForm from "../modal/formToEdit/editForm";
+import { IoIosStarOutline } from "react-icons/io";
+import { IoIosStar } from "react-icons/io";
 
 // person components used for each contact in phone book
 export default function Person(props) {
   // state for edit form
   const [showEdit, setShowEdit] = useState(false);
+
+  const [favorite, setFavorite] = useState(false);
+
+  // this function adding contact to favorite list or remove if already exists
+  function handleClick() {
+    setFavorite((prev) => !prev);
+
+    // find if user exists:
+
+    props.setFavoriteList((prev) => [...prev], props.id);
+  }
   return (
     <div className={classes.person}>
-      <h2> {props.fname + " " + props.lname}</h2>
+      {!favorite && (
+        <IoIosStarOutline
+          onClick={() => handleClick()}
+          style={{ fontSize: "2rem" }}
+        />
+      )}
+      {favorite && (
+        <IoIosStar onClick={() => handleClick()} style={{ fontSize: "2rem" }} />
+      )}
+      <h2> {props.firstname + " " + props.lastname}</h2>
       <img src={props.src} alt="avatar" />
 
       <p> {props.email}</p>

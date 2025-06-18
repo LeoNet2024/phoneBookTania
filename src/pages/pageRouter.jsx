@@ -19,6 +19,9 @@ import getRandomAvatar from "../functions/randomAvatar";
 import getRandomGroup from "../functions/randomGruop";
 
 export default function PageRouter({ links }) {
+  //favorite list -> will contain id of persons
+  const [favorite, setFavorite] = useState();
+
   // used to protected navigate
   const [isLoggedIn, setLoggedIn] = useState(true);
 
@@ -39,7 +42,9 @@ export default function PageRouter({ links }) {
           ...prev,
           ...data.data.map((item) => ({
             ...item,
+            //adding random pic
             src: getRandomAvatar(),
+            //adding random group
             group: getRandomGroup(),
           })),
         ]);
@@ -77,6 +82,8 @@ export default function PageRouter({ links }) {
                   links={links}
                   contacts={contacts}
                   setContacts={setContacts}
+                  setFavorite={setFavorite}
+                  favorite={favorite}
                 />
               ) : (
                 <Navigate to={"/"} />
@@ -89,7 +96,13 @@ export default function PageRouter({ links }) {
             path="/groups"
             element={
               isLoggedIn ? (
-                <Groups links={links} contacts={contacts} />
+                <Groups
+                  links={links}
+                  contacts={contacts}
+                  setContacts={setContacts}
+                  setFavorite={setFavorite}
+                  favorite={favorite}
+                />
               ) : (
                 <Navigate to={"/"} />
               )
