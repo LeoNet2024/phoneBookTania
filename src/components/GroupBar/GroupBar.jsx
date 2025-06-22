@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import classes from "./GroupBar.module.css";
 
-export default function GroupBar({ onGroupChange }) {
+// Group bar help to class the contacts by group (Work,Home,School....)
+export default function GroupBar({ contacts, setFilteredContacts }) {
   const [activeTab, setActiveTab] = useState("all");
 
-  const handleClick = (group) => {
+  function handleClick(group) {
     setActiveTab(group);
-    if (onGroupChange) {
-      onGroupChange(group);
+
+    if (group === "all") {
+      // return the original list
+      setFilteredContacts(contacts);
+    } else {
+      //create new group
+      const filtered = contacts.filter(
+        (contact) => contact.group?.toLowerCase() === group
+      );
+      // update the contacts list
+      setFilteredContacts(filtered);
     }
-  };
+  }
 
   return (
     <div>
-      <h2>Groups</h2>
       <div className={classes.groupWrap}>
-        {["all", "family", "work", "school"].map((group) => (
+        {"all family work school".split(" ").map((group) => (
           <button
             key={group}
             onClick={() => handleClick(group)}

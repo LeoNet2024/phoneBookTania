@@ -3,20 +3,24 @@ import Header from "../../components/header/Header";
 import classes from "../page.module.css";
 import { useState } from "react";
 import ContactView from "../../components/ContactView/contactView";
-import GroupBar from "../../components/GroupBar/GroupBar";
 
+//Page group -> show contacts and group bar
 export default function Groups(props) {
+  const [activeGroup, setActiveGroup] = useState("all");
+
   return (
     <div className={classes.page}>
       <Header />
       <main>
-        <GroupBar />
+        <ContactView
+          links={props.links}
+          contacts={props.contacts}
+          setContacts={props.setContacts}
+          setFavorite={props.setFavorite}
+          favorite={props.favorite}
+          showGruopBar={true}
+        />
       </main>
-      <ContactView
-        links={props.links}
-        contacts={props.contacts}
-        setContacts={props.setContacts}
-      />
       <Footer />
     </div>
   );

@@ -1,12 +1,11 @@
+import { useState } from "react";
+
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import classes from "../page.module.css";
 
-
-
 import ContactView from "../../components/ContactView/contactView";
 export default function Contacts(props) {
-
   return (
     <div className={classes.page}>
       <Header />
@@ -14,6 +13,9 @@ export default function Contacts(props) {
         links={props.links}
         contacts={props.contacts}
         setContacts={props.setContacts}
+        setFavorite={props.setFavorite}
+        favorite={props.favorite}
+        showGruopBar= {false}
       />
       <Footer />
     </div>

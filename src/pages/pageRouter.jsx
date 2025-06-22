@@ -3,7 +3,6 @@ import {
   Routes,
   Route,
   Navigate,
-  data,
 } from "react-router-dom";
 
 import { useEffect, useState } from "react";
@@ -20,7 +19,7 @@ import getRandomGroup from "../functions/randomGruop";
 
 export default function PageRouter({ links }) {
   //favorite list -> will contain id of persons
-  const [favorite, setFavorite] = useState();
+  const [favorite, setFavorite] = useState([]);
 
   // used to protected navigate
   const [isLoggedIn, setLoggedIn] = useState(true);
@@ -48,6 +47,8 @@ export default function PageRouter({ links }) {
             group: getRandomGroup(),
           })),
         ]);
+        // set the filterContacts also
+        setFilteredContacts(contacts);
       })
       .catch((err) => {
         console.log("Error:", err);
